@@ -29,13 +29,3 @@ export async function PATCH(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(updated);
 }
-
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  await connectDB();
-  const { id } = await params;
-  await Comment.deleteOne({ id: Number(id) });
-  return NextResponse.json({ ok: true });
-}
